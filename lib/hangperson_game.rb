@@ -1,5 +1,5 @@
+# For representing a hang person game
 class HangpersonGame
-  # For representing a hang person game
   def initialize(word)
     @word = word
     @guesses = ''
