@@ -25,9 +25,9 @@ class HangpersonGame
     end
 
     if word.include? letter
-      @guesses << letter
+      guesses << letter
     else
-      @wrong_guesses << letter
+      wrong_guesses << letter
     end
 
     true
