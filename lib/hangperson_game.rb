@@ -22,11 +22,7 @@ class HangpersonGame
       return false
     end
 
-    if word.include? letter
-      guesses << letter
-    else
-      wrong_guesses << letter
-    end
+    word.include?(letter) ? guesses << letter : wrong_guesses << letter
 
     true
   end
