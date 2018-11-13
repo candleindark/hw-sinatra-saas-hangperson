@@ -19,12 +19,12 @@ class HangpersonGame
 
     # Add support for case insensitivity
     letter = letter.downcase
-    if (@guesses.include? letter) || (@wrong_guesses.include? letter)
+    if (guesses.include? letter) || (wrong_guesses.include? letter)
       # The letter is a repeated guess
       return false
     end
 
-    if @word.include? letter
+    if word.include? letter
       @guesses << letter
     else
       @wrong_guesses << letter
