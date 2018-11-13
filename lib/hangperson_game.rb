@@ -33,7 +33,7 @@ class HangpersonGame
 
   def word_with_guesses
     hidden_letter_match_pattern =
-        guesses.empty? ? /./ : Regexp.new('[^' + guesses + ']')
+      guesses.empty? ? /./ : Regexp.new('[^' + guesses + ']')
     word.gsub(hidden_letter_match_pattern, '-')
   end
 
