@@ -12,14 +12,14 @@ class HangpersonGame
 
   # To process a guessed letter
   def guess(letter)
-    unless (letter.is_a? String) and (letter.match /^[[:alpha:]]{1}$/)
+    unless (letter.is_a? String) && (letter.match /^[[:alpha:]]{1}$/)
       # The argument is not a letter
       raise ArgumentError, 'The argument is not a letter.'
     end
 
     # Add support for case insensitivity
     letter = letter.downcase
-    if (@guesses.include? letter) or (@wrong_guesses.include? letter)
+    if (@guesses.include? letter) || (@wrong_guesses.include? letter)
       # The letter is a repeated guess
       return false
     end
