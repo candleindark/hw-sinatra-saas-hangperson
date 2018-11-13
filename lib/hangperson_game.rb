@@ -35,6 +35,22 @@ class HangpersonGame
     word.gsub(hidden_letter_match_pattern, '-')
   end
 
+  # Purpose: To check the status of the game
+  # Return: :win if the game is won
+  #         :lose if the game is lost
+  #         :play if the game is not yet finished
+  def check_win_or_lose
+    if wrong_guesses.length < 7
+      if word_with_guesses.include? '-'
+        :play
+      else
+        :win
+      end
+    else
+      :lose
+    end
+  end
+
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
