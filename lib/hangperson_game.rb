@@ -27,6 +27,8 @@ class HangpersonGame
     true
   end
 
+  # Return the word with guessed characters displayed and other characters
+  # hidden with '-'
   def word_with_guesses
     hidden_letter_match_pattern =
       guesses.empty? ? /./ : Regexp.new('[^' + guesses + ']')
