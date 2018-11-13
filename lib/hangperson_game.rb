@@ -10,7 +10,7 @@ class HangpersonGame
 
   # To process a guessed letter
   def guess(letter)
-    unless (letter.is_a? String) && (letter.match /^[[:alpha:]]{1}$/)
+    unless (letter.is_a? String) && (letter.match? /^[[:alpha:]]{1}$/)
       # The argument is not a letter
       raise ArgumentError, 'The argument is not a letter.'
     end
