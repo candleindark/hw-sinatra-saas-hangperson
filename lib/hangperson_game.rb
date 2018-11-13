@@ -1,14 +1,12 @@
 # For representing a hang person game
 class HangpersonGame
+  attr_reader :word, :guesses, :wrong_guesses
+
   def initialize(word)
     @word = word
     @guesses = ''
     @wrong_guesses = ''
   end
-
-  attr_reader :word
-  attr_reader :guesses
-  attr_reader :wrong_guesses
 
   # To process a guessed letter
   def guess(letter)
