@@ -104,7 +104,7 @@ The special Sinatra hash `params[]` has a key-value pair for each nonblank field
 
 <details>
   <summary>In your Sinatra code for processing a guess, what expression would you use to extract *just the first character* of what the user typed in the letter-guess field of the form in <code>show.erb</code>? **CAUTION:** if the user typed nothing, there won't be any matching key in <code>params[]</code>, so dereferencing the form field will give <code>nil</code>.  In that case, your code should return the empty string rather than an error.</summary>
-  <p><blockquote><code>params[:guess].to_s[0]</code> or its equivalent.  <code>to_s</code> converts <code>nil</code> to the empty string in case the form field was left blank (and therefore not included in <code>params</code> at all).   <code>[0]</code> grabs the first character only; for an empty string, it returns an empty string.</blockquote></p>
+  <p><blockquote><code>params[:guess].to_s[0].to_s</code> or its equivalent.  <code>to_s</code> converts <code>nil</code> to the empty string in case the form field was left blank (and therefore not included in <code>params</code> at all).   <code>[0]</code> grabs the first character only; for an empty string, it returns nil.</blockquote></p>
 </details>
 <br />
 
