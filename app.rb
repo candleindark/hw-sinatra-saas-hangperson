@@ -8,7 +8,7 @@ class HangpersonApp < Sinatra::Base
   register Sinatra::Flash
 
   before do
-    @game = session[:game] || HangpersonGame.new('')
+    @game = session[:game]
   end
 
   after do
@@ -38,15 +38,19 @@ class HangpersonApp < Sinatra::Base
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
-    letter = params[:guess].to_s[0].to_s
+    if @game.nil?
+      redirect '/new'
+    else
+      letter = params[:guess].to_s[0].to_s
 
-    begin
-      flash[:message] = 'You have already used that letter.' unless @game.guess(letter)
-    rescue ArgumentError
-      flash[:message] = 'Invalid guess.'
+      begin
+        flash[:message] = 'You have already used that letter.' unless @game.guess(letter)
+      rescue ArgumentError
+        flash[:message] = 'Invalid guess.'
+      end
+
+      redirect '/show'
     end
-
-    redirect '/show'
   end
 
   # Everytime a guess is made, we should eventually end up at this route.
@@ -55,29 +59,41 @@ class HangpersonApp < Sinatra::Base
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
-    case @game.check_win_or_lose
-    when :win
-      redirect '/win'
-    when :lose
-      redirect '/lose'
+    if @game.nil?
+      redirect '/new'
     else
-      erb :show
+      case @game.check_win_or_lose
+      when :win
+        redirect '/win'
+      when :lose
+        redirect '/lose'
+      else
+        erb :show
+      end
     end
   end
 
   get '/win' do
-    if @game.check_win_or_lose == :win
-      erb :win
+    if @game.nil?
+      redirect '/new'
     else
-      redirect '/show'
+      if @game.check_win_or_lose == :win
+        erb :win
+      else
+        redirect '/show'
+      end
     end
   end
 
   get '/lose' do
-    if @game.check_win_or_lose == :lose
-      erb :lose
+    if @game.nil?
+      redirect '/new'
     else
-      redirect '/show'
+      if @game.check_win_or_lose == :lose
+        erb :lose
+      else
+        redirect '/show'
+      end
     end
   end
 end
