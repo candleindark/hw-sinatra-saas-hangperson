@@ -22,7 +22,9 @@ class HangpersonGame
       return false
     end
 
-    word.include?(letter) ? @guesses << letter : @wrong_guesses << letter
+    if check_win_or_lose == :play
+      word.include?(letter) ? @guesses << letter : @wrong_guesses << letter
+    end
 
     true
   end
