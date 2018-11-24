@@ -11,7 +11,7 @@ class HangpersonApp < Sinatra::Base
   end
 
   after do
-    session[:game] = @game
+    session[:game] = @game unless @game.nil?
   end
 
   # These two routes are good examples of Sinatra syntax
